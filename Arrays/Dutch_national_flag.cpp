@@ -3,6 +3,7 @@
 // The functions should put all 0s first, then all 1s and all 2s in last.
 
 #include <iostream>
+#include <vector>
 using namespace std;
 
 // To print the array
@@ -15,39 +16,38 @@ void printArray(int arr[], int n)
     cout << endl;
 }
 
-// We use 3 pointer (start,mid,end) approach in this code
-void sortArray(int arr[], int n)
+// We use 3 pointer (low,mid,high) approach in this code
+void sortArray(int nums[], int n)
 {
-    int start = 0, mid = 1, end = n - 1;
-    while ((mid <= end))
+    int low = 0, mid = 0, high = n - 1;
+    while (mid <= high)
     {
-        if (arr[start] == 0)
+        if (nums[mid] == 0)
         {
-            start++;
-        }
-        if (arr[end] == 2)
-        {
-            end--;
-        }
-        switch (arr[mid])
-        {
-        case 0:
-            swap(arr[start], arr[mid]);
-            break;
-        case 1:
+            // If mid element is "0" then we swap it with low index
+            // and increment both low index and mid index
+            swap(nums[mid], nums[low]);
+            low++;
             mid++;
-            break;
-        case 2:
-            swap(arr[mid], arr[end]);
-            break;
         }
+        else if (nums[mid] == 2)
+        {
+            // If mid element if "2" then we swap it with high index
+            //  and decrement high only
+            swap(nums[mid], nums[high]);
+            high--;
+            // Note in this case we "DO NOT INCREMENT MID" to avoid skipping elements
+        }
+        else if (nums[mid] == 1)
+            // if mid is 1 then simply skip forward
+            mid++;
     }
 }
 
 int main()
 {
-    int arr[] = {0, 1, 1, 0, 1, 2, 1, 2, 0, 2, 1, 0, 0, 1};
-    int n = 14;
+    int arr[] = {1, 2, 0};
+    int n = 3;
     sortArray(arr, n);
 
     printArray(arr, n);
