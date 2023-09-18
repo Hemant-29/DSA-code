@@ -9,13 +9,14 @@ int binarySearch(vector<int> arr, int n, int target)
     int end = n - 1;
     int mid = (start + end) / 2;
     int found_index = -1;
+    int total_occurance = 1;
+
     while (start <= end)
     {
         if (arr[mid] == target)
         {
             found_index = mid;
-            // Even though we found the element we are not returning now, which will stop the loop.
-            // we will set the subArray to the left side of the mid and keep looping
+            // We here use the code for first occurance itself
             end = mid - 1;
         }
         if (arr[mid] > target)
@@ -28,15 +29,25 @@ int binarySearch(vector<int> arr, int n, int target)
         }
         mid = (start + end) / 2;
     }
+    // Until here the code is same as the code for first occurance
+
+    if (found_index > 0)
+    {
+        while (arr[found_index] == arr[found_index + 1])
+        { // After that we loop until that same element is repeating
+            found_index++;
+            total_occurance++;
+        }
+    }
+
     // We return the answer index in the end
-    return found_index;
+    return total_occurance;
 }
 
 int main()
 {
-    // A sorted array is given. That means we can use binary Search here
-    vector<int> arr = {1, 3, 4, 11, 11, 11, 15, 18, 21};
+    vector<int> arr = {2, 4, 5, 8, 9, 12, 15, 15, 15, 17};
 
-    cout << binarySearch(arr, arr.size(), 11) << endl;
+    cout << binarySearch(arr, arr.size(), 15) << endl;
     return 0;
 }
