@@ -1,2 +1,1 @@
-cout << "Input the array: ";
-    // cin >> charArr;
+cout << "charcter is : " << str[i] << end
