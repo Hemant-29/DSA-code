@@ -16,5 +16,14 @@ int main()
     cout << "Dereferencing the value of address that the pointer is pointing to - " << *ptr << endl;
     // we use this syntax to dereference a pointer(*ptr)
     // Note that it is different than (int *ptr)
+
+    char a = 'g';
+    char *ptr2 = &a;
+
+    cout << "Size of integer pointer is - " << sizeof(ptr) << endl;
+    cout << "Size of character pointer is - " << sizeof(ptr2) << endl;
+    // Note that pointer pointing to any data type has same memory size
+    // whether it points to an integer, character or float etc.
+    // because it is used to store an address anyway, which takes 4 bytes
     cout << endl;
 }

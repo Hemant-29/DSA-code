@@ -1,0 +1,1 @@
+cout << ptr << endl;
