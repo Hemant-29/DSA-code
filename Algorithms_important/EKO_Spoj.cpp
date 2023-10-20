@@ -3,8 +3,13 @@
 #include <limits.h>
 using namespace std;
 
+// The problem is to find the maximum common height at which a woodcutter must cut the trees
+// to get the "m" meters of wood if trees in a row has different heights
+
 int isSolution(vector<int> &arr, int n, int m, int target)
 {
+    // Function which returns if a given answer(target) is the correct answer for the
+    // problem or not. Here target is the height
     bool ans;
     int height = 0;
     for (int i = 0; i < n; i++)
@@ -19,8 +24,10 @@ int isSolution(vector<int> &arr, int n, int m, int target)
 
 int minHeight(vector<int> &arr, int n, int m)
 {
-    int low = 0;
-    int high = INT_MIN;
+    // Here we use the Binary search approach to guess whether a number
+    // is the correct answer or not
+    int low = 0;        // Minimum possible height is 0
+    int high = INT_MIN; // Maximum possible height is of the heighest tree
     for (int i = 0; i < n; i++)
     {
         if (arr[i] > high)
@@ -37,7 +44,7 @@ int minHeight(vector<int> &arr, int n, int m)
             low = mid + 1;
         else
             break;
-        // updation
+        // updation of mid
         mid = low + (high - low) / 2;
     }
     return mid;
