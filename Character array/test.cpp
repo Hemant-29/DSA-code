@@ -7,9 +7,8 @@ using namespace std;
 
 int main()
 {
-    char a = '1';
-    char b = 0;
-    char sum = a + b - 48;
-    cout << ">" << sum << "<" << endl;
+    string str = "abcd";
+    str.pop_back();
+    cout << str << endl;
     return 0;
 }
