@@ -5,8 +5,13 @@ using namespace std;
 
 void recursiveMaze(vector<vector<int>> &maze, string &output, int i = 0, int j = 0)
 {
+    // This function prints out all the possible paths that rat can take to reach the destination
+    // Backtracking has to be done because we use the maze as pass by reference
+
     int i_max = maze.size() - 1;
+    // represent the index of no. of rows
     int j_max = maze[0].size() - 1;
+    // represents the index of no. of columns
     // cout << i_max << ", " << j_max << endl;
 
     // Base case
@@ -17,6 +22,7 @@ void recursiveMaze(vector<vector<int>> &maze, string &output, int i = 0, int j =
         return;
     }
 
+    // DOWN case
     if (i < i_max && maze[i + 1][j] == 1)
     {
         // Add current move to the output
@@ -29,6 +35,7 @@ void recursiveMaze(vector<vector<int>> &maze, string &output, int i = 0, int j =
         maze[i][j] = 1;
         output.pop_back();
     }
+    // RIGHT case
     if (j < j_max && maze[i][j + 1] == 1)
     {
         // Add current move to the output
@@ -41,6 +48,7 @@ void recursiveMaze(vector<vector<int>> &maze, string &output, int i = 0, int j =
         maze[i][j] = 1;
         output.pop_back();
     }
+    // UP case
     if (i > 0 && maze[i - 1][j] == 1)
     {
         // Add current move to the output
@@ -53,6 +61,7 @@ void recursiveMaze(vector<vector<int>> &maze, string &output, int i = 0, int j =
         maze[i][j] = 1;
         output.pop_back();
     }
+    // LEFT case
     if (j > 0 && maze[i][j - 1] == 1)
     {
         // Add current move to the output
@@ -69,6 +78,8 @@ void recursiveMaze(vector<vector<int>> &maze, string &output, int i = 0, int j =
 
 int main()
 {
+    // The rat has 4 possible movements, Up, Down, Right, Left
+    // Only the paths of the maze which has 1 are opened, and all paths with 0 are blocked
     vector<vector<int>> maze = {{1, 1, 1, 1},
                                 {1, 0, 1, 1},
                                 {1, 1, 1, 1},
@@ -77,6 +88,7 @@ int main()
     // Edge case
     if (maze[0][0] == 0)
         return 0;
+
     string output = "";
     recursiveMaze(maze, output);
     return 0;
